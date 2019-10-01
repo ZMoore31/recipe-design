@@ -4,6 +4,7 @@
     "moment": "2.24.0",
     "react": "latest",
     "react-dom": "latest",
+    "react-router-dom": "^5.1.2",
     "reactn": "2.2.4"
   },
   "keywords": [],
