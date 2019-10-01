@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "antd": "latest",
+    "moment": "2.24.0",
+    "react": "latest",
+    "react-dom": "latest",
+    "reactn": "2.2.4"
+  },
+  "keywords": [],
+  "name": "antdesign",
+  "description": ""
+}
