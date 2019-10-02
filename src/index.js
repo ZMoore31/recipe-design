@@ -1,11 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { setGlobal, useGlobal } from 'reactn';
-import { Calendar, Icon, Layout, Menu, Col, Row } from 'antd';
-import moment from 'moment';
-import 'antd/dist/antd.css';
-import './index.css';
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { setGlobal, useGlobal } from "reactn";
+import { Calendar, Icon, Layout, Menu, Col, Row } from "antd";
+import moment from "moment";
+import "antd/dist/antd.css";
+import "./index.css";
+
+import Home from "./home/home";
+import Recipes from "./recipes/recipes";
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -15,7 +18,7 @@ setGlobal({
 });
 
 function App(props) {
-  const [value, setValue] = useGlobal('value');
+  const [value, setValue] = useGlobal("value");
 
   function changeDate(date) {
     setValue(date);
@@ -26,16 +29,16 @@ function App(props) {
       <Sider className="sider" width={200}>
         <div className="logo" />
         <hr />
-        <div>{value.format('dddd, LL')}</div>
+        <div>{value.format("dddd, LL")}</div>
         <div
           style={{
-            border: '0px white solid',
-            overflow: 'auto',
-            color: '#fff',
+            border: "0px white solid",
+            overflow: "auto",
+            color: "#fff",
             flex: 2
           }}
         />
-        <hr style={{ marginTop: 'auto' }} />
+        <hr style={{ marginTop: "auto" }} />
         <Calendar
           className="side-cal"
           value={value}
@@ -56,7 +59,7 @@ function App(props) {
                   <Col>
                     <span
                       onClick={() => {
-                        const newValue = value.clone().subtract(1, 'month');
+                        const newValue = value.clone().subtract(1, "month");
                         onChange(newValue);
                       }}
                     >
@@ -64,14 +67,14 @@ function App(props) {
                     </span>
                   </Col>
                   <Col>
-                    <span style={{ fontSize: '14px', fontWeight: 'bold' }}>
-                      {value.format('MMMM YYYY')}
+                    <span style={{ fontSize: "14px", fontWeight: "bold" }}>
+                      {value.format("MMMM YYYY")}
                     </span>
                   </Col>
                   <Col>
                     <span
                       onClick={() => {
-                        const newValue = value.clone().add(1, 'month');
+                        const newValue = value.clone().add(1, "month");
                         onChange(newValue);
                       }}
                     >
@@ -89,7 +92,7 @@ function App(props) {
           <Menu
             theme="light"
             mode="horizontal"
-            style={{ lineHeight: '64px' }}
+            style={{ lineHeight: "64px" }}
             selectable={false}
           >
             <Menu.Item key="1" className="right">
@@ -99,37 +102,22 @@ function App(props) {
               // className="right"
               title={<span className="submenu-title-wrapper">Recipes</span>}
             >
-              <Menu.Item key="recipes:1">Recipe Home</Menu.Item>
+              <Menu.Item key="recipes:1">
+                <Link to="/recipes">Recipes Home</Link>
+              </Menu.Item>
               <Menu.Item key="setting:2">Add Recipe</Menu.Item>
             </SubMenu>
           </Menu>
         </Header>
         <Content className="content">
-          <Route path={'/test'} component={Test} />
+          <Route path={"/recipes"} component={Recipes} />
           <Route exact path={props.match.path} component={Home} />
         </Content>
-        <Footer style={{ textAlign: 'center' }}>
+        <Footer style={{ textAlign: "center" }}>
           App ©2019 Created by Zack Moore
         </Footer>
       </Layout>
     </Layout>
-  );
-}
-
-function Home() {
-  const [value, setValue] = useGlobal('value');
-
-  return <h1>Homepage</h1>;
-}
-
-function Test() {
-  const [value, setValue] = useGlobal('value');
-
-  return (
-    <div>
-      <h1>{value.format('LL')}</h1>
-      <p>testing</p>
-    </div>
   );
 }
 
@@ -141,4 +129,4 @@ function Routes() {
   );
 }
 
-ReactDOM.render(<Routes />, document.getElementById('container'));
+ReactDOM.render(<Routes />, document.getElementById("container"));

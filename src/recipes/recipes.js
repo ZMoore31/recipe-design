@@ -1,18 +1,18 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { useGlobal } from 'reactn';
+import React from "react";
+import { Link } from "react-router-dom";
+import { useGlobal } from "reactn";
 
-import { Breadcrumb } from 'antd';
+import { Breadcrumb } from "antd";
 
-function Recipe() {
+function Recipes() {
   // eslint-disable-next-line
-  const [page, setPage] = useGlobal('page');
+  const [page, setPage] = useGlobal("page");
 
   return (
     <div>
-      <Breadcrumb style={{ margin: '16px 0' }}>
+      <Breadcrumb style={{ margin: "16px 0" }}>
         <Breadcrumb.Item>
-          <Link to="/" onClick={() => setPage('')}>
+          <Link to="/" onClick={() => setPage("")}>
             Home
           </Link>
         </Breadcrumb.Item>
@@ -25,4 +25,4 @@ function Recipe() {
   );
 }
 
-export default Recipe;
+export default Recipes;
